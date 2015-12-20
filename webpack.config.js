@@ -9,15 +9,18 @@ var isProduction = process.env.NODE_ENV === 'production';
 // http://www.christianalfoni.com/articles/2015_04_19_The-ultimate-webpack-setup
 
 var config = {
-	entry: [
-		'es6-shim/es6-shim',
-		'reflect-metadata',
-		'ionic-framework/js/web-animations.min',
-		//'zone.js', // bug: angular beta 0 throws an error, so we import browser version instead (workaround)
-		// http://stackoverflow.com/questions/34359303/zone-is-not-defined-for-ngzone-angular22-0-0-beta-0
-		'zone.js/dist/zone',
-		path.join(srcAbs, paths.appDir, paths.appSrcModule)
-	],
+	entry: {
+		libs: [
+			'es6-shim/es6-shim',
+			'reflect-metadata',
+			'ionic-framework/js/web-animations.min',
+			//'zone.js', // bug: angular beta 0 throws an error, so we import browser version instead (workaround)
+			// http://stackoverflow.com/questions/34359303/zone-is-not-defined-for-ngzone-angular22-0-0-beta-0
+			'zone.js/dist/zone',
+			'ionic-framework/ionic'
+		],
+		app: path.join(srcAbs, paths.appDir, paths.appSrcModule)
+	},
 	output: {
 		path: path.join(__dirname, paths.wwwDir, paths.buildDir, paths.buildJSDir),
 		filename: paths.appBuildBundle,
@@ -30,7 +33,7 @@ var config = {
 			{test: /\.ts$/, loader: 'strip-sourcemap', include: /node_modules\/angular2/},
 			{test: /\.jpg$/, loader: "file-loader"},
 			{test: /\.png$/, loader: "url-loader?mimetype=image/png"},
-			{test: /\.html$/, loader: "html-loader?minimize=false"},
+			{test: /\.html$/, loader: "html-loader?minimize=false"}
 		]
 	},
 	resolve: {
@@ -38,14 +41,17 @@ var config = {
 		//'ionic': 'ionic-framework',
 		//'web-animations.min': 'ionic-framework/js/web-animations.min',
 		//},
-		extensions: ["", ".js", ".ts"]
-	}
+		extensions: ["", ".ts", ".js"]
+	},
+	plugins: [
+		new webpack.optimize.CommonsChunkPlugin(/* chunkName= */"libs", /* filename= */"libs.bundle.js")
+	]
 };
 
 
 if (isProduction) {
 	// Minify when building for production
-	config.plugins = [
+	config.plugins = config.plugins.concat([
 		//https://github.com/mishoo/UglifyJS2
 		new webpack.optimize.UglifyJsPlugin({
 			comments: false,
@@ -66,7 +72,7 @@ if (isProduction) {
 			}
 		}),
 		new webpack.optimize.OccurenceOrderPlugin()
-	];
+	]);
 }
 
 module.exports = config;

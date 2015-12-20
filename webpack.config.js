@@ -1,9 +1,14 @@
 var path = require('path');
+var webpack = require('webpack');
 var paths = require('./ionic.config').paths;
 
 var srcAbs = path.join(__dirname, paths.srcDir);
+var isProduction = process.env.NODE_ENV === 'production';
 
-module.exports = {
+// Example of config with dev server:
+// http://www.christianalfoni.com/articles/2015_04_19_The-ultimate-webpack-setup
+
+var config = {
 	entry: [
 		'es6-shim/es6-shim',
 		'reflect-metadata',
@@ -25,14 +30,43 @@ module.exports = {
 			{test: /\.ts$/, loader: 'strip-sourcemap', include: /node_modules\/angular2/},
 			{test: /\.jpg$/, loader: "file-loader"},
 			{test: /\.png$/, loader: "url-loader?mimetype=image/png"},
-			{test: /\.html$/, loader: "html-loader"},
+			{test: /\.html$/, loader: "html-loader?minimize=false"},
 		]
 	},
 	resolve: {
 		//alias: {
-			//'ionic': 'ionic-framework',
-			//'web-animations.min': 'ionic-framework/js/web-animations.min',
+		//'ionic': 'ionic-framework',
+		//'web-animations.min': 'ionic-framework/js/web-animations.min',
 		//},
 		extensions: ["", ".js", ".ts"]
 	}
 };
+
+
+if (isProduction) {
+	// Minify when building for production
+	config.plugins = [
+		//https://github.com/mishoo/UglifyJS2
+		new webpack.optimize.UglifyJsPlugin({
+			comments: false,
+			output: {comments: false},
+			"screw-ie8": true,
+			screwIe8: true,
+			compress: {
+				sequences: true,
+				dead_code: true,
+				drop_debugger: true,
+				conditionals: true,
+				comparisons: true,
+				booleans: true,
+				unused: true,
+				if_return: true,
+				join_vars: true,
+				drop_console: true
+			}
+		}),
+		new webpack.optimize.OccurenceOrderPlugin()
+	];
+}
+
+module.exports = config;

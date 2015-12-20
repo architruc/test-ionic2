@@ -1,0 +1,52 @@
+{
+  "name": "test-ionic2",
+  "description": "An Ionic 2 project",
+  "private": true,
+  "scripts": {
+    "e2e-init": "webdriver-manager update",
+    "e2e-start": "webdriver-manager start",
+    "e2e": "protractor test/protractor.config.js",
+    "build": "webpack --progress --colors"
+  },
+  "dependencies": {
+    "angular2": "2.0.0-beta.0",
+    "awesome-typescript-loader": "^0.15.9",
+	  "del": "^2.2.0",
+    "es6-promise": "^3.0.2",
+    "es6-shim": "0.33.13",
+	  "file-loader": "^0.8.5",
+	  "gulp": "^3.9.0",
+	  "gulp-autoprefixer": "^3.1.0",
+	  "gulp-sass": "^2.1.0",
+	  "gulp-watch": "^4.3.5",
+	  "html-loader": "^0.4.0",
+    "ionic-framework": "^2.0.0-alpha.44",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.0",
+	  "strip-sourcemap-loader": "0.0.1",
+	  "typescript": "^1.7.3",
+	  "url-loader": "^0.5.7",
+    "webpack": "^1.12.9",
+    "zone.js": "0.5.10"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "chai-as-promised": "^5.1.0",
+    "cucumber": "^0.9.2",
+    "protractor": "^3.0.0",
+    "protractor-cucumber-framework": "^0.3.2",
+    "systemjs": "^0.19.9",
+    "zombie": "^4.2.1"
+  },
+  "cordovaPlugins": [
+    "cordova-plugin-device",
+    "cordova-plugin-console",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-splashscreen",
+    "cordova-plugin-statusbar",
+    "ionic-plugin-keyboard"
+  ],
+  "cordovaPlatforms": [
+    "android"
+  ]
+}

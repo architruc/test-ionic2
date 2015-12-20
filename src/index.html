@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ionic</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <link ios-href="../www/build/css/app.ios.css" rel="stylesheet">
+  <link md-href="../www/build/css/app.md.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- this Ionic's root component and where the app will load -->
+  <ion-app></ion-app>
+
+
+  <script src="cordova.js"></script>
+
+  <!--App imported in dev mode-->
+  <script src="../node_modules/es6-shim/es6-shim.min.js"></script>
+  <script src="../node_modules/reflect-metadata/Reflect.js"></script>
+  <script src="../node_modules/ionic-framework/js/web-animations.min.js"></script>
+  <script src="../node_modules/zone.js/dist/zone.min.js"></script>
+
+  <script src="../node_modules/systemjs/dist/system.src.js"></script>
+  <script src="systemjs.config.js"></script>
+  <script>
+	  System.import('app/app')
+		  .then(null, console.error.bind(console));
+  </script>
+
+</body>
+</html>

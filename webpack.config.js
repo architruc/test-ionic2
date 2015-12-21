@@ -31,9 +31,9 @@ var config = {
 		loaders: [
 			{test: /\.ts$/, loader: 'awesome-typescript', include: [srcAbs], exclude: /node_modules/},
 			{test: /\.ts$/, loader: 'strip-sourcemap', include: /node_modules\/angular2/},
-			{test: /\.jpg$/, loader: "file-loader"},
-			{test: /\.png$/, loader: "url-loader?mimetype=image/png"},
-			{test: /\.html$/, loader: "html-loader?minimize=false"}
+			{test: /\.jpg$/, loader: "file"},
+			{test: /\.png$/, loader: "url?mimetype=image/png"},
+			{test: /\.html$/, loader: "html?minimize=false"}
 		]
 	},
 	resolve: {
@@ -50,7 +50,7 @@ var config = {
 
 
 if (isProduction) {
-	// Minify when building for production
+	// Minify when building for production - uglify and occurence plugin are equivalent to -p param
 	config.plugins = config.plugins.concat([
 		//https://github.com/mishoo/UglifyJS2
 		new webpack.optimize.UglifyJsPlugin({

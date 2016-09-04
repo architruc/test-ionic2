@@ -39,7 +39,7 @@ gulp.task('sass', function(){
 
   var sassSrcFiles = [];
   config.paths.appSassSrc.forEach(function(sassSrc) {
-    sassSrcFiles.push( path.join(config.paths.wwwDir, config.paths.appDir, sassSrc) );
+    sassSrcFiles.push( path.join(config.paths.srcDir, config.paths.appDir, sassSrc) );
   });
 
   gulp.src(sassSrcFiles)

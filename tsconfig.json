@@ -2,11 +2,12 @@
 	"compilerOptions": {
 		"target": "ES5",
 		"module": "commonjs",
+		"moduleResolution" : "node",
+		"sourceMap": true,
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
-		"sourceMap": false,
-		"inlineSourceMap": false,
-		"inlineSources": false
+		"removeComments": false,
+		"noImplicitAny": true
 	},
 	"exclude": [
 		"node_modules",

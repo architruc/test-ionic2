@@ -8,9 +8,11 @@
     "e2e": "protractor test/protractor.config.js",
     "build-android": "ionic build android",
     "build-android-prod": "npm run build-android --production",
-    "wp": "webpack --progress --colors",
-    "wp-prod": "npm run build --production",
-    "start": "live-server --open=src"
+    "wp": "webpack --progress --colors --watch",
+    "wp-nowatch": "webpack --progress --colors",
+    "wp-prod": "npm run wp-nowatch --production",
+    "sass": "gulp watch",
+    "start": "live-server --open=www --ignore=node_modules,resources,platform,plugins,www/build/js,www/build/fonts"
   },
   "dependencies": {
     "angular2": "2.0.0-beta.0",

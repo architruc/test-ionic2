@@ -18,6 +18,8 @@ dist/
 node_modules/
 platforms/
 plugins/
+src/app/**/*.js
+src/app/**/*.map
 tmp/
 temp/
 www/build/

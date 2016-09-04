@@ -1,3 +1,8 @@
+
+## TODO
+
+- continue protractor. must configure the URL to use npm start or ionic serve.
+
 ## Reading
 
 - protractor cucumber best practises: http://stuff.aftnn.org/acceptance-testing-cucumber.js-protractor
